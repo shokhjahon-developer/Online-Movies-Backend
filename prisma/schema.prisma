@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MovieGenre {
+  horror
+  romance
+  drama
+  meledrama
+  comedy
+  fantasy
+
+  @@map("film_genres")
+}
+
+enum MoviePopularity {
+  low
+  good
+  great
+  super
+}
+
+model Users {
+  id           String         @default(dbgenerated("gen_random_uuid()")) @map("id") @db.Uuid
+  fullName     String         @map("fullName") @db.VarChar(32)
+  email        String         @unique @map("email") @db.VarChar(32)
+  password     String         @map("password") @db.VarChar(64)
+  isAdmin      Boolean        @default(true) @map("isAdmin")
+  createdAt    DateTime       @default(now()) @map("created_at")
+  watchHistory WatchHistory[]
+
+  @@id([id])
+  @@map("users")
+}
+
+model Movies {
+  id                String          @default(dbgenerated("gen_random_uuid()")) @map("id") @db.Uuid
+  title             String          @map("title") @db.VarChar(32)
+  description       String          @map("description")
+  genre             MovieGenre      @map("genre")
+  year              String          @map("year") @db.VarChar(32)
+  duration          String          @map("duration")
+  link              String          @map("link")
+  views             Int             @default(0)
+  popularity        MoviePopularity @map("popularity")
+  ratings           Float           @default(0) @map("ratings")
+  language          String          @map("language") @db.VarChar(32)
+  country           String          @map("country") @db.VarChar(64)
+  company String          @map("productionCompany") @db.VarChar(64)
+
+  createdAt    DateTime       @default(now()) @map("createdAt")
+  deletedAt    DateTime?      @default(now()) @map("deleted_at")
+  watchHistory WatchHistory[]
+
+  @@id([id])
+  @@map("movies")
+}
+
+model WatchHistory {
+  id        String   @default(dbgenerated("gen_random_uuid()")) @map("id")
+  userId    String   @map("userId") @db.Uuid
+  moviesId  String   @map("movieId") @db.Uuid
+  createdAt DateTime @default(now()) @map("createdAt")
+
+  user  Users  @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  movie Movies @relation(fields: [moviesId], references: [id])
+
+  @@id([id])
+  @@map("watch_history")
+}

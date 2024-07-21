@@ -1,0 +1,392 @@
+{
+	"info": {
+		"_postman_id": "3d9ea89e-6651-4faf-962f-75c7cde94642",
+		"name": "Movies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34602501"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Registration",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"your email here!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9875/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9875",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify your Email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4MGExMzRiLWZjNWUtNGRhMi1iNGFiLWNlZGY1Yzk4MWJiNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMDEyNzY5NywiZXhwIjoxNzIwMTQyMDk3fQ.bRMgFvi4HhfGIq8LaLJ-hMyfZihYT2h2KyLZyaBTcTU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"Azim Umarov\",\r\n    \"email\": \"email!\",\r\n    \"password\": \"password\",\r\n    \"code\": \"code that you recieved from EMAIL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9875/api/auth/verify",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9875",
+							"path": [
+								"api",
+								"auth",
+								"verify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"email\": \"email\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9875/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9875",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add movie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4MGExMzRiLWZjNWUtNGRhMi1iNGFiLWNlZGY1Yzk4MWJiNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMDEyNzY5NywiZXhwIjoxNzIwMTQyMDk3fQ.bRMgFvi4HhfGIq8LaLJ-hMyfZihYT2h2KyLZyaBTcTU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Avengers 5\",\r\n    \"description\": \"Something about this movie\",\r\n    \"genre\": \"fantasy\",\r\n    \"year\": \"1897 year\",\r\n    \"duration\": \"2 hours\",\r\n    \"link\": \"movie link here\",\r\n    \"popularity\": \"low\",\r\n    \"ratings\": 10,\r\n    \"language\": \"russian\",\r\n    \"country\": \"uk\",\r\n    \"company\": \"Disney\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9875/api/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9875",
+					"path": [
+						"api",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get by Genres",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9875/api/movies/genre/fantasy",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9875",
+					"path": [
+						"api",
+						"movies",
+						"genre",
+						"fantasy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get By id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9875/api/movies/e78fb5ba-1c46-4d5a-b3fd-3b839d07890c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9875",
+					"path": [
+						"api",
+						"movies",
+						"e78fb5ba-1c46-4d5a-b3fd-3b839d07890c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Movies",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4MGExMzRiLWZjNWUtNGRhMi1iNGFiLWNlZGY1Yzk4MWJiNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcyMDEyNzY5NywiZXhwIjoxNzIwMTQyMDk3fQ.bRMgFvi4HhfGIq8LaLJ-hMyfZihYT2h2KyLZyaBTcTU",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9875/api/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9875",
+					"path": [
+						"api",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get By Language",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9875/api/movies/language/russian",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9875",
+					"path": [
+						"api",
+						"movies",
+						"language",
+						"russian"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get By Views",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9875/api/movies/views",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9875",
+					"path": [
+						"api",
+						"movies",
+						"views"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get By Ratings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9875/api/movies/ratings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9875",
+					"path": [
+						"api",
+						"movies",
+						"ratings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get By Country",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9875/api/movies/country/uk",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9875",
+					"path": [
+						"api",
+						"movies",
+						"country",
+						"uk"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get By Company",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9875/api/movies/company/Disney",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9875",
+					"path": [
+						"api",
+						"movies",
+						"company",
+						"Disney"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Movie",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1MzFjNmNlLTg4N2ItNDIwYi1hOGU5LWQ0ZmRlZjZhM2ExOCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MjAxMjk4MTAsImV4cCI6MTcyMDE0NDIxMH0.rZkQURYHEsIJ1BA2rlzXH2yuMWa0j_X6VSP4QZE6MT0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Avengers 2\",\r\n    \"description\": \"Something about this movie\",\r\n    \"genre\": \"fantasy\",\r\n    \"year\": \"1897 year\",\r\n    \"duration\": \"2 hours\",\r\n    \"link\": \"movie link here\",\r\n    \"popularity\": \"low\",\r\n    \"ratings\": 10,\r\n    \"language\": \"russian\",\r\n    \"country\": \"UK\",\r\n    \"company\": \"Disney\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9875/api/movies/94f8bba9-1ff9-43a0-9e52-9eeb3d0a57cb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9875",
+					"path": [
+						"api",
+						"movies",
+						"94f8bba9-1ff9-43a0-9e52-9eeb3d0a57cb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Movie",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9875/api/movies/94f8bba9-1ff9-43a0-9e52-9eeb3d0a57cb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9875",
+					"path": [
+						"api",
+						"movies",
+						"94f8bba9-1ff9-43a0-9e52-9eeb3d0a57cb"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
